@@ -1,0 +1,105 @@
+# Substitution Script
+
+## Overview
+
+This script performs text substitutions in specified files or directories based on a configuration file. It supports various features such as backup creation, logging, dry-run mode, verbose output, forced scanning, and interactive mode.
+
+## Features
+
+- **Configuration File**: Define substitution patterns and replacements in a YAML file.
+- **Backup**: Automatically create backups of files before making changes.
+- **Logging**: Log processed files and errors.
+- **Dry Run**: Preview changes without modifying files.
+- **Verbose Mode**: Detailed output of the script's actions.
+- **Force Scan**: Reprocess files even if they were processed before.
+- **Interactive Mode**: Confirm each substitution interactively.
+- **Multi-threading**: Process multiple files concurrently.
+- **File Type Filtering**: Specify which file types to process.
+
+## Requirements
+
+- Python 3.10 or higher
+- Required Python packages: `pyyaml`, `colorama`
+
+## Installation
+
+1. **Clone the repository**:
+    ```sh
+    git clone <repository_url>
+    cd <repository_directory>
+    ```
+
+2. **Install dependencies**:
+    ```sh
+    pip install -r requirements.txt
+    ```
+
+## Usage
+
+### Command Line Arguments
+
+- `target`: Target file or directory to process.
+- `-c`, `--config`: Path to the configuration file (default: `config.yaml`).
+- `-l`, `--log`: Path to the log file (default: `substitution.log`).
+- `-b`, `--backup`: Backup directory (default: `Backup_<timestamp>`).
+- `-d`, `--dry-run`: Perform a dry run without making changes.
+- `-v`, `--verbose`: Enable verbose mode.
+- `-f`, `--force`: Force scan even if the file was processed before.
+- `-i`, `--interactive`: Interactive mode to confirm each substitution.
+- `--tail`: Show the last N processed files (default: 10).
+- `--file-types`: File types to process (default: `.txt`, `.md`).
+
+### Example Usage
+
+```sh
+python3 app.py filename.txt
+python3 app.py /path/to/directory
+python3 app.py filename.txt -f
+python3 app.py filename.txt -d
+python3 app.py filename.txt -v
+python3 app.py filename.txt -i
+python3 app.py filename.txt -l custom_log.log
+python3 app.py --tail 20
+python3 app.py filename.txt -c config.yaml
+python3 app.py filename.txt -c config.yml
+Configuration File
+The configuration file should be in YAML format and contain a substitutions key with a list of patterns and replacements. Example:
+
+substitutions:
+  - pattern: "foo"
+    replacement: "bar"
+  - pattern: "hello"
+    replacement: "world"
+Logging
+The script logs processed files and errors to the specified log file. By default, the log file is substitution.log.
+
+Backup
+Backups of the original files are created in the specified backup directory. By default, the backup directory is named Backup_<timestamp>.
+
+Interactive Mode
+In interactive mode, the script will prompt the user to confirm each substitution. Example prompt:
+
+Replace 'foo' with 'bar'? (y/n):
+Dry Run
+In dry run mode, the script will display the changes that would be made without actually modifying the files.
+
+Verbose Mode
+In verbose mode, the script provides detailed output of its actions, including which files are being processed and any errors encountered.
+
+Force Scan
+By default, the script skips files that have been processed before. Use the --force option to reprocess these files.
+
+File Types
+Specify which file types to process using the --file-types option. By default, the script processes .txt and .md files.
+
+Summary Report
+After processing, the script generates a summary report of the processed files.
+
+License
+This project is licensed under the MIT License. See the LICENSE file for details.
+
+Contributing
+Contributions are welcome! Please submit a pull request or open an issue to discuss your ideas.
+
+Contact
+For any questions or issues, please contact fredbyron@gmail.com.
